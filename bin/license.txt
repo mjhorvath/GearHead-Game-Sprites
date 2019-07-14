@@ -1,0 +1,4 @@
+Creative Commons - Lesser General Purpose License (CC-GNU LGPL)
+http://creativecommons.org/licenses/LGPL/2.1/
+
+Except where noted.

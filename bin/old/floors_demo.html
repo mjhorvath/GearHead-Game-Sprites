@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>GearHead - Floors Demo</title>
+		<script type="text/javascript">
+var sprite_table =
+[
+	'Floor_Tile_SquareStagger_Large_a',
+	'Floor_Tile_SquareStagger_Large_b',
+	'Floor_Tile_SquareStagger_Small_a',
+	'Floor_Tile_SquareStagger_Small_b',
+	'Floor_Tile_SquareNoStagger_Large',
+	'Floor_Tile_SquareNoStagger_Small',
+	'Floor_Flat_Hardwood_a',
+	'Floor_Flat_Hardwood_b',
+	'Floor_Flat_Guts',
+	'Floor_Flat_Concrete',
+	'Floor_Flat_Tiling21',
+	'Floor_Bumpy_Granite',
+	'Floor_Bumpy_Agate_a',
+	'Floor_Bumpy_Agate_b',
+	'Floor_Bumpy_Blocks_a',
+	'Floor_Bumpy_Blocks_b',
+]
+
+var position_table =
+[
+//
+	[0,0],
+	[32,-16],
+	[64,-32],
+	[96,-48],
+//
+	[32,16],
+	[64,0],
+	[96,-16],
+	[128,-32],
+//
+	[64,32],
+	[96,16],
+	[128,0],
+	[160,-16],
+//
+	[96,48],
+	[128,32],
+	[160,16],
+	[192,0]
+]
+
+function place_sprites()
+{
+	var doc_bod = document.getElementById('mainbody')
+	for (var i = 0, n = sprite_table.length; i < n; i++)
+	{
+		for (var j = 0, o = position_table.length; j < o; j++)
+		{
+			var pad_lft = position_table[j][0]
+			var pad_top = position_table[j][1]
+			var new_img = document.createElement('img')
+			new_img.id = 'sprite_' + i + '_' + j
+			new_img.src = 'floors/frames/' + sprite_table[i] + (j % 8) + '.png'
+			new_img.title = sprite_table[i]
+			new_img.style.position = 'absolute'
+			new_img.style.left = ((i % 3) * 256) + pad_lft + 'px'
+			new_img.style.top = (Math.floor(i/3) * 256) + pad_top + 'px'
+			doc_bod.appendChild(new_img)
+		}
+		var this_sprite = sprite_table[i]
+		var name_box = document.createElement('div')
+		var name_text = document.createTextNode(this_sprite)
+		name_box.appendChild(name_text)
+		name_box.style.position = 'absolute'
+		name_box.style.top = (Math.floor(i/3) * 256 + 192) + 'px'
+		name_box.style.left = ((i % 3) * 256) + 'px'
+		doc_bod.appendChild(name_box)
+	}
+}
+		</script>
+	</head>
+	<body id="mainbody" style="background:#888 url(axes.png);font-family:monospace;margin:0px;" onload="place_sprites()">
+		<div style="position:absolute;top:0px;z-index:20;">
+			<a href="chars_demo.html">chars_demo.html</a>
+			<a href="effects_demo.html">effects_demo.html</a>
+			<a href="floors_demo.html">floors_demo.html</a>
+			<a href="mecha_demo.html">mecha_demo.html</a>
+			<a href="monsters_demo.html">monsters_demo.html</a>
+			<a href="props_demo.html">props_demo.html</a>
+			<a href="terrain_demo.html">terrain_demo.html</a>
+			<a href="walls_demo.html">walls_demo.html</a>
+		</div>
+	</body>
+</html>

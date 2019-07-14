@@ -1,0 +1,32 @@
+call assemble_monsters_64x64x8.bat monster_android
+call assemble_monsters_64x64x8.bat monster_tridefender
+call assemble_monsters_64x64x8.bat monster_dragonfly
+call assemble_monsters_64x64x8.bat monster_flameroach
+call assemble_monsters_64x64x8.bat monster_plasmabeetle
+call assemble_monsters_64x64x8.bat monster_androbot
+call assemble_monsters_64x64x8.bat monster_ballbot
+call assemble_monsters_64x64x8.bat monster_bear
+call assemble_monsters_64x64x8.bat monster_berserker
+call assemble_monsters_64x64x8.bat monster_coreworm
+call assemble_monsters_64x64x8.bat monster_craftbot
+call assemble_monsters_64x64x8.bat monster_cyclops
+call assemble_monsters_64x64x8.bat monster_exorg_flyer
+call assemble_monsters_64x64x8.bat monster_fireworm
+call assemble_monsters_64x64x8.bat monster_fungus1
+call assemble_monsters_64x64x8.bat monster_fungus2
+call assemble_monsters_64x64x8.bat monster_hx1
+call assemble_monsters_64x64x8.bat monster_hx2
+call assemble_monsters_64x64x8.bat monster_hx3
+call assemble_monsters_64x64x8.bat monster_jelly
+call assemble_monsters_64x64x8.bat monster_larva
+call assemble_monsters_64x64x8.bat monster_penguin
+call assemble_monsters_64x64x8.bat monster_petrobot
+call assemble_monsters_64x64x8.bat monster_reconbot
+call assemble_monsters_64x64x8.bat monster_sentinel
+call assemble_monsters_64x64x8.bat monster_turretbot
+call assemble_monsters_64x64x8.bat monster_typhon
+call assemble_monsters_64x64x8.bat monster_urchin
+call assemble_monsters_64x64x8.bat monster_walkingbot
+call assemble_monsters_64x64x8.bat monster_workbot
+
+pause

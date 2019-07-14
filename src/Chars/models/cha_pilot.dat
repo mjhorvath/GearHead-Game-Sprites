@@ -1,0 +1,27 @@
+0 Minifig (Complete Figure Shortcut)
+0 Name: cha_pilot.dat
+0 Author: Leonardo Zide
+0 Official LCAD Part - 2000-02 Update
+0 legs & hip
+0 ROTATION CENTER 0 0 0 1 "Custom" 
+0 ROTATION CONFIG 0 0
+1 2 0 -28 0 1 0 0 0 1 0 0 0 1 972.DAT
+1 2 0 -28 0 1 0 0 0 1 0 0 0 1 971.DAT
+1 2 0 -40 0 1 0 0 0 1 0 0 0 1 970.DAT
+0 torso
+1 2 0 -72 0 1 0 0 0 1 0 0 0 1 973.DAT
+1 4 0 -72 0 1 0 0 0 1 0 0 0 1 30174.DAT
+1 4 0 0 0 1 0 0 0 1 0 0 0 1 axis20x.dat
+0 head
+1 14 0 -100 0 1 0 0 0 1 0 0 0 1 3626BP01.DAT
+1 4 0 -100 0 1 0 0 0 1 0 0 0 1 2446.DAT
+1 2 0 -100 0 1 0 0 0 1 0 0 0 1 2447.DAT
+0 hat
+0 airtank
+0 arms
+1 4 0 -64 0 1 0 0 0 1 0 0 0 1 975.DAT
+1 4 0 -64 0 1 0 0 0 1 0 0 0 1 976.DAT
+0 hands
+1 14 -23 -44 -15.5 0 0 1 -0.71 0.71 0 0.71 0.71 0 977.DAT
+1 14 23 -44 -15.5 0 0 1 -0.71 0.71 0 0.71 0.71 0 977.DAT
+0

@@ -1,0 +1,66 @@
+ Volume in drive D is Storage
+ Volume Serial Number is B846-54A9
+
+ Directory of D:\Working\GearHead\GH_GameSprites_src\Mecha\povray\povray_pejic
+
+03/09/2016  09:15 PM    <DIR>          .
+03/09/2016  09:15 PM    <DIR>          ..
+03/09/2016  08:57 PM           105,660 aer_bee.pov
+05/10/2012  09:19 PM           693,371 aer_darkfog.pov
+05/10/2012  09:18 PM           443,999 aer_laf.pov
+05/10/2012  09:18 PM           764,160 aer_lancer.pov
+05/10/2012  09:18 PM           391,432 aer_mosquito.pov
+05/10/2012  09:18 PM           649,317 aer_owl.pov
+05/10/2012  09:18 PM           690,942 aer_paveway.pov
+05/10/2012  09:18 PM           413,905 aer_zs-97.pov
+05/10/2012  09:18 PM           677,818 ara_archer.pov
+05/10/2012  09:18 PM         1,013,250 ara_bushwhacker.pov
+05/10/2012  09:18 PM           625,912 ara_crab.pov
+05/10/2012  09:20 PM           490,678 ara_gorilla.pov
+05/10/2012  09:39 PM           580,929 ara_iron.pov
+05/10/2012  09:20 PM         1,095,314 ara_map.pov
+05/10/2012  09:20 PM         1,689,550 ara_mbp.pov
+05/10/2012  09:20 PM         1,309,353 ara_mdp.pov
+05/10/2012  09:20 PM         1,396,735 ara_mmp.pov
+05/10/2012  09:20 PM         1,156,621 ara_msp.pov
+05/10/2012  09:20 PM         1,409,543 ara_mtp.pov
+05/10/2012  09:20 PM         1,183,175 ara_mwp.pov
+05/10/2012  09:20 PM           570,620 ara_prowler.pov
+05/10/2012  09:19 PM           407,285 ara_psu.pov
+05/10/2012  09:38 PM           384,669 ara_spider.pov
+02/09/2009  05:39 AM             3,856 ara_tridefender.pov
+05/10/2012  09:21 PM           420,045 ara_uav.pov
+05/10/2012  09:38 PM         1,280,969 btr_azriel.pov
+05/10/2012  09:21 PM           713,765 btr_bigbrother.pov
+05/10/2012  09:37 PM           533,623 btr_brute.pov
+05/10/2012  09:21 PM         1,050,127 btr_centurion.pov
+05/10/2012  09:21 PM           336,611 btr_chieftain.pov
+05/10/2012  09:21 PM           812,733 btr_coyote.pov
+05/10/2012  09:21 PM         1,240,135 btr_dilur.pov
+05/10/2012  09:37 PM           630,141 btr_goblin.pov
+05/10/2012  09:36 PM           683,149 btr_hunter.pov
+05/10/2012  09:22 PM           823,845 btr_joker.pov
+05/10/2012  09:22 PM           157,146 btr_lz70.pov
+05/10/2012  09:23 PM           479,112 btr_maniac.pov
+05/10/2012  09:23 PM           488,163 btr_neroid.pov
+05/10/2012  09:23 PM           339,902 btr_raider.pov
+05/10/2012  09:36 PM           748,055 btr_ranger.pov
+05/10/2012  09:23 PM           584,976 btr_sentinel.pov
+05/10/2012  09:23 PM           867,407 btr_stalwart.pov
+05/10/2012  09:23 PM           869,094 btr_striker.pov
+05/10/2012  09:35 PM         1,078,306 btr_tortoise.pov
+05/10/2012  09:23 PM           607,982 btr_troll.pov
+05/10/2012  09:23 PM           514,592 btr_viper.pov
+05/10/2012  09:23 PM           579,081 btr_whitetiger.pov
+05/10/2012  09:22 PM           926,554 btr_wolf.pov
+05/10/2012  09:22 PM           382,302 btr_zparamecha.pov
+03/09/2016  09:15 PM                26 dir.cmd
+03/09/2016  09:15 PM                 0 dir.txt
+05/10/2012  09:24 PM           529,368 ghu_apc01.pov
+05/10/2012  09:24 PM           501,278 ghu_apc02.pov
+05/10/2012  09:24 PM           582,892 hov_loiterer.pov
+05/10/2012  09:24 PM         1,074,954 zoa_mirage.pov
+05/10/2012  09:35 PM           581,851 zoa_rhino.pov
+05/10/2012  09:34 PM           784,333 zoa_terror.pov
+              57 File(s)     39,350,611 bytes
+               2 Dir(s)  66,803,617,792 bytes free

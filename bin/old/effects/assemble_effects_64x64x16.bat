@@ -1,0 +1,40 @@
+:: Takes a series of eighteen 64x128 frames, crops them to 64x96, then collects 
+:: them all into a single image.
+
+set ImgName=%1
+
+convert "frames\%ImgName%00.png" -background transparent -crop 64x64+0+64! "%ImgName%00_crop.png"
+convert "frames\%ImgName%01.png" -background transparent -crop 64x64+0+64! "%ImgName%01_crop.png"
+convert "frames\%ImgName%02.png" -background transparent -crop 64x64+0+64! "%ImgName%02_crop.png"
+convert "frames\%ImgName%03.png" -background transparent -crop 64x64+0+64! "%ImgName%03_crop.png"
+convert "frames\%ImgName%04.png" -background transparent -crop 64x64+0+64! "%ImgName%04_crop.png"
+convert "frames\%ImgName%05.png" -background transparent -crop 64x64+0+64! "%ImgName%05_crop.png"
+convert "frames\%ImgName%06.png" -background transparent -crop 64x64+0+64! "%ImgName%06_crop.png"
+convert "frames\%ImgName%07.png" -background transparent -crop 64x64+0+64! "%ImgName%07_crop.png"
+convert "frames\%ImgName%08.png" -background transparent -crop 64x64+0+64! "%ImgName%08_crop.png"
+convert "frames\%ImgName%09.png" -background transparent -crop 64x64+0+64! "%ImgName%09_crop.png"
+convert "frames\%ImgName%10.png" -background transparent -crop 64x64+0+64! "%ImgName%10_crop.png"
+convert "frames\%ImgName%11.png" -background transparent -crop 64x64+0+64! "%ImgName%11_crop.png"
+convert "frames\%ImgName%12.png" -background transparent -crop 64x64+0+64! "%ImgName%12_crop.png"
+convert "frames\%ImgName%13.png" -background transparent -crop 64x64+0+64! "%ImgName%13_crop.png"
+convert "frames\%ImgName%14.png" -background transparent -crop 64x64+0+64! "%ImgName%14_crop.png"
+convert "frames\%ImgName%15.png" -background transparent -crop 64x64+0+64! "%ImgName%15_crop.png"
+
+montage "%ImgName%00_crop.png" "%ImgName%01_crop.png" "%ImgName%02_crop.png" "%ImgName%03_crop.png" "%ImgName%04_crop.png" "%ImgName%05_crop.png" "%ImgName%06_crop.png" "%ImgName%07_crop.png" "%ImgName%08_crop.png" "%ImgName%09_crop.png" "%ImgName%10_crop.png" "%ImgName%11_crop.png" "%ImgName%12_crop.png" "%ImgName%13_crop.png" "%ImgName%14_crop.png" "%ImgName%15_crop.png" -background transparent -geometry 64x64! -tile 4x4 "sheets\%ImgName%_sheet.png"
+
+del "%ImgName%00_crop.png"
+del "%ImgName%01_crop.png"
+del "%ImgName%02_crop.png"
+del "%ImgName%03_crop.png"
+del "%ImgName%04_crop.png"
+del "%ImgName%05_crop.png"
+del "%ImgName%06_crop.png"
+del "%ImgName%07_crop.png"
+del "%ImgName%08_crop.png"
+del "%ImgName%09_crop.png"
+del "%ImgName%10_crop.png"
+del "%ImgName%11_crop.png"
+del "%ImgName%12_crop.png"
+del "%ImgName%13_crop.png"
+del "%ImgName%14_crop.png"
+del "%ImgName%15_crop.png"

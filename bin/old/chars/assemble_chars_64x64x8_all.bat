@@ -1,0 +1,27 @@
+call assemble_chars_64x64x8.bat cha_f_bandit
+call assemble_chars_64x64x8.bat cha_f_bhunter
+call assemble_chars_64x64x8.bat cha_f_doctor
+call assemble_chars_64x64x8.bat cha_f_explorer
+call assemble_chars_64x64x8.bat cha_f_guardian
+call assemble_chars_64x64x8.bat cha_f_hyolee
+call assemble_chars_64x64x8.bat cha_f_mechanic
+call assemble_chars_64x64x8.bat cha_f_mechanic2
+call assemble_chars_64x64x8.bat cha_f_pilot
+call assemble_chars_64x64x8.bat cha_f_princess
+call assemble_chars_64x64x8.bat cha_f_shopkeeper
+call assemble_chars_64x64x8.bat cha_f_soldier
+call assemble_chars_64x64x8.bat cha_f_student
+call assemble_chars_64x64x8.bat cha_m_bhunter
+call assemble_chars_64x64x8.bat cha_m_citizen
+call assemble_chars_64x64x8.bat cha_m_doctor
+call assemble_chars_64x64x8.bat cha_m_explorer
+call assemble_chars_64x64x8.bat cha_m_guardian
+call assemble_chars_64x64x8.bat cha_m_mechanic
+call assemble_chars_64x64x8.bat cha_m_mockup
+call assemble_chars_64x64x8.bat cha_m_monk
+call assemble_chars_64x64x8.bat cha_m_pilot
+call assemble_chars_64x64x8.bat cha_m_soldier
+call assemble_chars_64x64x8.bat cha_m_student
+call assemble_chars_64x64x8.bat cha_pilot
+
+pause

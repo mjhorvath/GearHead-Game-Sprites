@@ -1,0 +1,7 @@
+call assemble_terrain_64x96x16.bat Terrain_Hills_a
+call assemble_terrain_64x96x16.bat Terrain_Hills_b
+call assemble_terrain_64x96x16.bat Terrain_Hills_c
+call assemble_terrain_64x96x16.bat Roads_Large
+call assemble_terrain_64x96x16.bat Roads_Small
+
+pause

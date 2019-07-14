@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>GearHead - Monsters Demo</title>
+		<script type="text/javascript">
+var cycle_num = 1
+
+function pad_zero(in_num)
+{
+	if (in_num < 10)
+		return '0' + in_num
+	else
+		return in_num
+}
+
+var sprite_table =
+[
+	'monster_android',
+	'monster_tridefender',
+	'monster_dragonfly',
+	'monster_flameroach',
+	'monster_plasmabeetle',
+	'monster_androbot',
+	'monster_ballbot',
+	'monster_bear',
+	'monster_berserker',
+	'monster_coreworm',
+	'monster_craftbot',
+	'monster_cyclops',
+	'monster_exorg_flyer',
+	'monster_fireworm',
+	'monster_fungus1',
+	'monster_fungus2',
+	'monster_hx1',
+	'monster_hx2',
+	'monster_hx3',
+	'monster_jelly',
+	'monster_larva',
+	'monster_penguin',
+	'monster_petrobot',
+	'monster_reconbot',
+	'monster_sentinel',
+	'monster_turretbot',
+	'monster_typhon',
+	'monster_urchin',
+	'monster_walkingbot',
+	'monster_workbot'
+]
+
+function place_sprites()
+{
+	var doc_bod = document.getElementById('mainbody')
+	for (var i = 0, n = sprite_table.length; i < n; i++)
+	{
+		var new_img = document.createElement('img')
+		new_img.id = 'shadow' + i
+		new_img.src = 'effects/frames/Shadow_Big.png'
+		new_img.style.position = 'absolute'
+		new_img.style.top = (Math.floor(i/12) * 128) + 'px'
+		new_img.style.left = ((i % 12) * 64) + 'px'
+		doc_bod.appendChild(new_img)
+		var new_img = document.createElement('img')
+		new_img.id = 'sprite' + i
+		new_img.src = 'monsters/frames/' + sprite_table[i] + cycle_num + '.png'
+		new_img.title = sprite_table[i]
+		new_img.style.position = 'absolute'
+		new_img.style.top = (Math.floor(i/12) * 128) + 'px'
+		new_img.style.left = ((i % 12) * 64) + 'px'
+		doc_bod.appendChild(new_img)
+	}
+	setInterval("cycle_animations()", 2000)
+}
+
+function cycle_animations()
+{
+	cycle_num = cycle_num + 1
+	if (cycle_num == 8)
+	{
+		cycle_num = 0
+	}
+	for (var i = 0, n = sprite_table.length; i < n; i++)
+	{
+		var this_img = document.getElementById('sprite' + i)
+		this_img.src = 'monsters/frames/' + sprite_table[i] + cycle_num + '.png'
+	}
+}
+		</script>
+	</head>
+	<body id="mainbody" style="background:#888 url(axes.png);font-family:monospace;margin:0px;" onload="place_sprites()">
+		<div style="position:absolute;top:0px;z-index:20;">
+			<a href="chars_demo.html">chars_demo.html</a>
+			<a href="effects_demo.html">effects_demo.html</a>
+			<a href="floors_demo.html">floors_demo.html</a>
+			<a href="mecha_demo.html">mecha_demo.html</a>
+			<a href="monsters_demo.html">monsters_demo.html</a>
+			<a href="props_demo.html">props_demo.html</a>
+			<a href="terrain_demo.html">terrain_demo.html</a>
+			<a href="walls_demo.html">walls_demo.html</a>
+		</div>
+	</body>
+</html>

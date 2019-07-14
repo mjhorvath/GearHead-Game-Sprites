@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>GearHead - Thin Walls Demo</title>
+		<script type="text/javascript">
+var door_0 = -1
+var door_1 = -2
+var alt_0 = -3
+var alt_1 = -4
+
+var position_table =
+[
+	[ 8,-32,192],
+// row -01
+	[10,-16,160],
+// row  00
+	[14,  0,128],
+// row  01
+	[alt_0, 16, 96],
+	[door_1, 16,160],
+// row  02
+	[alt_0, 32, 64],
+	[13, 32,192],
+// row  03
+	[10, 48, 32],
+	[door_0, 48,160],
+	[alt_1, 48,224],
+// row  04
+	[ 2, 64,  0],
+	[14, 64,128],
+	[ 1, 64,256],
+// row  05
+	[ 2, 80, 96],
+	[ 1, 80,160]
+]
+
+var sprite_table =
+[
+	// Misc
+	["Wall_Fence_a","Door_d",1],
+	["Wall_Fence_b","Door_d",1],
+	["Wall_Fence_c","Door_d",0],
+	["Wall_IsoAgate_a","Door_d",1],
+	["Wall_IsoAgate_b","Door_d",1],
+	["Wall_IsoCrackle_a","Door_d",1],
+	["Wall_IsoCrackle_b","Door_d",1],
+	// Flat
+	["Wall_FlatStone_a","Door_d",0],
+	["Wall_FlatStone_b","Door_d",0],
+	["Wall_FlatShack","Door_c",1],
+	["Wall_FlatConcrete","Door_a",1],
+	["Wall_FlatTechy_a","Door_a",1],
+	["Wall_FlatTechy_b","Door_a",1],
+	// Brick
+	["Wall_Brick_a","Door_c",1],
+	["Wall_Brick_b","Door_b",1],
+	["Wall_Brick_c","Door_d",1],
+	// Tube
+	["Wall_TubeGuts","Door_d",0],
+	["Wall_TubeConcrete","Door_d",0],
+	//
+	["Wall_Fortress","Door_d",0],
+	["Wall_Arena","Door_d",1],
+]
+
+function padzero(innum)
+{
+	if (innum < 10)
+		innum = "0" + innum
+	return innum
+}
+
+function place_sprites()
+{
+	for (var j = 0, p = sprite_table.length; j < p; j++)
+	{
+		var new_container = document.createElement('div')
+		new_container.style.position = 'absolute'
+		new_container.style.top = (Math.floor(j/3) * 224) + 'px'
+		new_container.style.margin = '0px'
+		new_container.style.width = '320px'
+		new_container.style.height = '224px'
+		if (j % 3 == 1)
+			new_container.style.left = '320px'
+		else if (j % 3 == 2)
+			new_container.style.left = '640px'
+		else
+			new_container.style.left = '0px'
+		var this_sprite = sprite_table[j][0]
+		var door_image = sprite_table[j][1]
+		var alt_sprite = sprite_table[j][2]
+		for (var i = 0, n = position_table.length; i < n; i++)
+		{
+			var this_image = position_table[i]
+			var new_image = document.createElement('img')
+			if (this_image[0] == door_0)
+				new_image.src = 'doors/frames/' + door_image + '_0.png'
+			else if (this_image[0] == door_1)
+				new_image.src = 'doors/frames/' + door_image + '_1.png'
+			else if (this_image[0] == alt_0)
+			{
+				if (alt_sprite)
+					new_image.src = 'walls/frames/' + this_sprite + '_16.png'
+				else
+					new_image.src = 'walls/frames/' + this_sprite + '_10.png'
+			}
+			else if (this_image[0] == alt_1)
+			{
+				if (alt_sprite)
+					new_image.src = 'walls/frames/' + this_sprite + '_17.png'
+				else
+					new_image.src = 'walls/frames/' + this_sprite + '_05.png'
+			}
+			else
+				new_image.src = 'walls/frames/' + this_sprite + '_' + padzero(this_image[0]) + '.png'
+			new_image.style.position = 'absolute'
+			new_image.style.top = this_image[1] + 'px'
+			new_image.style.left = this_image[2] + 'px'
+			new_container.appendChild(new_image)
+		}
+		var name_box = document.createElement('div')
+		var name_text = document.createTextNode(this_sprite)
+		name_box.appendChild(name_text)
+		name_box.style.position = 'absolute'
+		name_box.style.bottom = '0px'
+		name_box.style.left = '0px'
+		new_container.appendChild(name_box)
+		document.getElementById('mainbody').appendChild(new_container)
+	}
+}
+		</script>
+	</head>
+	<body id="mainbody" style="background:#888 url(axes.png);font-family:monospace;" onload="place_sprites()">
+		<div style="position:absolute;top:0px;z-index:20;">
+			<a href="chars_demo.html">chars_demo.html</a>
+			<a href="effects_demo.html">effects_demo.html</a>
+			<a href="floors_demo.html">floors_demo.html</a>
+			<a href="mecha_demo.html">mecha_demo.html</a>
+			<a href="monsters_demo.html">monsters_demo.html</a>
+			<a href="props_demo.html">props_demo.html</a>
+			<a href="terrain_demo.html">terrain_demo.html</a>
+			<a href="walls_demo.html">walls_demo.html</a>
+		</div>
+	</body>
+</html>

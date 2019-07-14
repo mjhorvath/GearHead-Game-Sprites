@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>GearHead - Effects Demo</title>
+		<script type="text/javascript">
+var cycle_num = 0
+
+function pad_zero(in_num)
+{
+	if (in_num < 10)
+		return '0' + in_num
+	else
+		return in_num
+}
+
+var sprite_table =
+[
+	'Effect_Flame',
+	'Effect_Smoke',
+	'Explosion_Cuncussive',
+	'Explosion_Energy',
+	'Explosion_Firy',
+	'Explosion_Smokey',
+	'Explosion_Volatile',
+	'Projectile_Bullet',
+	'Projectile_Energy',
+	'Projectile_Flamethrower',
+	'Projectile_Laser',
+	'Projectile_Missile',
+]
+
+function place_sprites()
+{
+	var doc_bod = document.getElementById('mainbody')
+	for (var i = 0, n = sprite_table.length; i < n; i++)
+	{
+		var new_img = document.createElement('img')
+		new_img.id = 'sprite' + i
+		new_img.src = 'effects/frames/' + sprite_table[i] + pad_zero(cycle_num) + '.png'
+		doc_bod.appendChild(new_img)
+	}
+	setInterval("cycle_animations()", 100)
+}
+
+function cycle_animations()
+{
+	for (var i = 0, n = sprite_table.length; i < n; i++)
+	{
+		var this_img = document.getElementById('sprite' + i)
+		this_img.src = 'effects/frames/' + sprite_table[i] + pad_zero(cycle_num) + '.png'
+	}
+	cycle_num = cycle_num + 1
+	if (cycle_num == 16)
+	{
+		cycle_num = 0
+	}
+}
+		</script>
+	</head>
+	<body id="mainbody" style="background:#888 url(axes.png);font-family:monospace;margin:0px;" onload="place_sprites()">
+		<div style="position:absolute;top:0px;z-index:20;">
+			<a href="chars_demo.html">chars_demo.html</a>
+			<a href="effects_demo.html">effects_demo.html</a>
+			<a href="floors_demo.html">floors_demo.html</a>
+			<a href="mecha_demo.html">mecha_demo.html</a>
+			<a href="monsters_demo.html">monsters_demo.html</a>
+			<a href="props_demo.html">props_demo.html</a>
+			<a href="terrain_demo.html">terrain_demo.html</a>
+			<a href="walls_demo.html">walls_demo.html</a>
+		</div>
+	</body>
+</html>

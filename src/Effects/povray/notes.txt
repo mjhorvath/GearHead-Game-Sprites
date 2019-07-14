@@ -1,0 +1,10 @@
+The wollowing three effects do not work in POV-Ray version 3.7:
+
+* Projectile_Bullet.pov
+* Projectile_Flamethrower.pov
+* Explosion_Volatile.pov
+
+They need to be rendered in POV-Ray 3.6 instead.
+
+Most of these effects were taken from the Web and are not under the same license 
+as the rest of the effects.
