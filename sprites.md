@@ -19,8 +19,6 @@ The images in the majority of the sub-directories of the "demos" directory are u
 
 This library has a lot of depencies that you will need to track down and install yourself. I could not include them all due to licensing restrictions. Once you have located and downloaded the dependencies, you will need to add them to the Library_Path section of "GearHead.ini".
 
-Clues to where you can track down these dependencies can be found [here](credits.md).
-
 
 ## The Models
 

@@ -1,3 +1,5 @@
+# Credits
+
 This library utilizes or links to the following:
 
 * GameSprites by Michael Horvath at POV-Ray Object Collection
