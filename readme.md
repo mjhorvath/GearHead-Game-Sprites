@@ -20,5 +20,5 @@ This library has a lot of depencies that you will need to track down and install
 1. The exceptions are mecha models by Michael Horvath, which are CC BY-SA.
 1. POV-Ray scripts by Michael Horvath are LGPL 2.1.
 1. Sprite Tools by Michael Horvath are LGPL 2.1.
+1. _GearHead: Arena_ is licensed under the LGPL 2.1.
 1. The GearHead Universe is Copyright 2005 by Joseph Hewitt.
-1. GearHead: Arena is licensed under the LGPL 2.1.
