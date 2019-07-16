@@ -1,0 +1,621 @@
+<!--
+GH Sprite Tools
+Copyright (C) 2006  Michael Horvath
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+-->
+<HTML>
+	<HEAD>
+		<TITLE>
+			GH Appender v1.2.1
+		</TITLE>
+		<HTA:APPLICATION
+			ID = "oApp"
+			APPLICATIONNAME = "GHAppend"
+			BORDER = "thick"
+			CAPTION = "yes"
+			ICON = "ghapp.ico"
+			SHOWINTASKBAR = "yes"
+			SINGLEINSTANCE = "no"
+			WINDOWSTATE = "normal"
+			SCROLL = "yes"
+			SCROLLFLAT = "yes"
+			VERSION = "1.2.1"
+			INNERBORDER = "no"
+			SELECTION = "no"
+			SYSMENU = "yes"
+			MAXIMIZEBUTTON = "yes"
+			MINIMIZEBUTTON = "yes"
+			NAVIGABLE = "yes"
+			CONTEXTMENU = "no"
+			BORDERSTYLE = "thin"
+		/>
+		<SCRIPT Language="JScript">
+		<!--
+			//------+-------+-------+-------+-------+-------+-------+-------+------- Initializing (loading) data
+
+			var fso = new ActiveXObject('Scripting.FileSystemObject')
+			var WshShell = new ActiveXObject('WScript.Shell')
+			var LocalDirPath = WshShell.CurrentDirectory
+			var ApplicationAction = 0
+			var ApplicationMode = 0
+			var ImageFrames = 0
+			var SpriteSize = 0
+			var ImageRoot = 'undefined'
+			var InputHodPath = 'undefined'
+			var InputHodFile = 'undefined'
+			var InputHodPathObj = null
+			var InputHodListObj = null
+			var ImgFramesSelObj = null
+			var BatchObject = null
+
+			function init()
+			{
+				InputHodPathObj = document.getElementById('InputHodPath')
+				InputHodListObj = document.getElementById('InputHodList')
+				ImgFramesSelObj = document.getElementById('ImgFramesSel')
+				ImgRootSelObj = document.getElementById('ImgRootSel')
+				loadLastSettings()
+				setAll()
+				updAll()
+			}
+
+			function loadLastSettings()
+			{
+				var TempPath = LocalDirPath + '\\settings.ini'
+				var TempObject = fso.OpenTextFile(TempPath, 1, 0)
+				var TempText = ''
+				var TempRegexp = ''
+				var TempMatch = []
+				try
+				{
+					TempText = TempObject.ReadAll()
+				}
+				catch(e)
+				{
+					TempText = ""
+				}
+				TempObject.Close()
+				TempRegexp = /(^ImageFrames\=)(.*)(;$)/gm
+				TempMatch = TempText.match(TempRegexp)
+				ImageFrames = TempMatch[0].replace(TempRegexp, "$2")
+				TempRegexp = /(^SpriteSize\=)(.*)(;$)/gm
+				TempMatch = TempText.match(TempRegexp)
+				SpriteSize = TempMatch[0].replace(TempRegexp, "$2")
+				TempRegexp = /(^ApplicationAction\=)(.*)(;$)/gm
+				TempMatch = TempText.match(TempRegexp)
+				ApplicationAction = TempMatch[0].replace(TempRegexp, "$2")
+				TempRegexp = /(^ApplicationMode\=)(.*)(;$)/gm
+				TempMatch = TempText.match(TempRegexp)
+				ApplicationMode = TempMatch[0].replace(TempRegexp, "$2")
+				TempRegexp = /(^InputHodPath\=)(.*)(;$)/gm
+				TempMatch = TempText.match(TempRegexp)
+				InputHodPath = TempMatch[0].replace(TempRegexp, "$2")
+				TempRegexp = /(^InputHodFile\=)(.*)(;$)/gm
+				TempMatch = TempText.match(TempRegexp)
+				InputHodFile = TempMatch[0].replace(TempRegexp, "$2")
+
+				ImageRoot = trimRoot(InputHodFile)
+			}
+
+			function resetRoot()
+			{
+				updAll()
+				setRoot()
+			}
+			function trimRoot(TempString)
+			{
+				return TempString.substring(0, TempString.length - 4 - ImageFrames.length)
+			}
+
+			//------+-------+-------+-------+-------+-------+-------+-------+------- Setting up (outputting to the screen) loaded data
+
+			function setAll()
+			{
+				setSprSize()
+				setImgFrames()
+				setAppAction()
+				setAppMode()
+				setInpHodPath()
+				setInpHodList()
+				setRoot()
+			}
+			function setRoot()
+			{
+				ImgRootSelObj.value = ImageRoot
+			}
+			function setImgFrames()
+			{
+				ImgFramesSelObj.value = ImageFrames
+			}
+			function setSprSize()
+			{
+				for (var i = 0; i < document.SprSize.SprSizeSel.length; i ++)
+				{
+					if (i == SpriteSize)
+					{
+						document.SprSize.SprSizeSel[i].checked = true
+					}
+					else
+					{
+						document.SprSize.SprSizeSel[i].checked = false
+					}
+				}
+			}
+			function setAppMode()
+			{
+				for (var i = 0; i < document.AppMode.AppModeSel.length; i ++)
+				{
+					if (i == ApplicationMode)
+					{
+						document.AppMode.AppModeSel[i].checked = true
+					}
+					else
+					{
+						document.AppMode.AppModeSel[i].checked = false
+					}
+				}
+			}
+			function setAppAction()
+			{
+				for (var i = 0; i < document.AppAction.AppActionSel.length; i ++)
+				{
+					if (i == ApplicationAction)
+					{
+						document.AppAction.AppActionSel[i].checked = true
+					}
+					else
+					{
+						document.AppAction.AppActionSel[i].checked = false
+					}
+				}
+			}
+			function setInpHodList()
+			{
+				if (InputHodList.hasChildNodes())
+				{
+					for (var i = 0; i = InputHodList.childNodes.length; i ++)
+					{
+						InputHodList.removeChild(InputHodList.childNodes[0])
+					}
+				}
+				if (fso.FolderExists(InputHodPath) == 1)
+				{
+					var TempFolder = fso.GetFolder(InputHodPath)
+					var TempFiles = new Enumerator(TempFolder.files)
+					var TempFilesTable = []
+					var TempBool = 0
+					for (; !TempFiles.atEnd(); TempFiles.moveNext())
+					{
+						var TempName = fso.GetFileName(TempFiles.item())
+						if (TempName.slice(-4) == '.png')
+						{
+							TempFilesTable.push(TempName)
+						}
+					}
+					TempFilesTable.sort()
+					for (var i = 0; i < TempFilesTable.length; i ++)
+					{
+						var TempName = TempFilesTable[i]
+						var TempElement = document.createElement('option')
+						TempElement.innerText = TempName
+						if (InputHodFile == TempName)
+						{
+							TempElement.setAttribute('selected', 'selected')
+							TempBool = 1
+						}
+						InputHodList.appendChild(TempElement)
+					}
+				}
+			}
+			function setInpHodPath()
+			{
+				InputHodPathObj.value = InputHodPath
+			}
+
+
+			//------+-------+-------+-------+-------+-------+-------+-------+------- Updating (changing) data
+
+			function updAll()
+			{
+				updImgFrames()
+				updSprSize()
+				updAppMode()
+				updAppAction()
+				updImgFrames()
+				updInpHodPath()
+				updImgRoot()
+			}
+			function updImgRoot()
+			{
+				ImageRoot = trimRoot(InputHodFile)
+			}
+			function updSprSize()
+			{
+				for (var i = 0; i < document.SprSize.SprSizeSel.length; i ++)
+				{
+					if (document.SprSize.SprSizeSel[i].checked == true)
+					{
+						SpriteSize = i
+						break
+					}
+				}
+			}
+			function updImgFrames()
+			{
+				ImageFrames = ImgFramesSelObj.value
+			}
+			function updAppMode()
+			{
+				for (var i = 0; i < document.AppMode.AppModeSel.length; i ++)
+				{
+					if (document.AppMode.AppModeSel[i].checked == true)
+					{
+						ApplicationMode = i
+						break
+					}
+				}
+			}
+			function updAppAction()
+			{
+				for (var i = 0; i < document.AppAction.AppActionSel.length; i ++)
+				{
+					if (document.AppAction.AppActionSel[i].checked == true)
+					{
+						ApplicationAction = i
+						break
+					}
+				}
+			}
+			function updInpHodList()
+			{
+				if (InputHodList.hasChildNodes())
+				{
+					var TempBool = 0
+					for (var i = 0; i < InputHodList.childNodes.length; i ++)
+					{
+						if (InputHodList.childNodes[i].getAttribute('selected') != 0)
+						{
+							var TempText = InputHodList.childNodes[i].innerText
+							if (TempText != '<none>')
+							{
+								InputHodFile = TempText
+								TempBool = 1
+								break
+							}
+							else
+							{
+								TempBool = 0
+								break
+							}
+						}
+					}
+					if (TempBool == 0)
+					{
+						InputHodFile = 'undefined'
+					}
+				}
+			}
+			function updInpHodPath()
+			{
+				var TempPath = InputHodPathObj.value
+				if (TempPath != null)
+				{
+					if (TempPath == '')
+					{
+						TempPath = 'undefined'
+					}
+					else if (TempPath.slice(TempPath.length - 1) == '\\')
+					{
+						TempPath = TempPath.slice(0, TempPath.length - 1)
+					}
+					if (TempPath.toLowerCase() == '%hw2_root%')
+					{
+						TempPath = WshShell.ExpandEnvironmentStrings(TempPath)
+						TempPath = TempPath.slice(1, -1)
+					}
+					InputHodPath = TempPath
+				}
+				updInpHodList()
+				setInpHodList()
+			}
+
+			//------+-------+-------+-------+-------+-------+-------+-------+------- Operating on data
+
+			function performAction()
+			{
+				updAll()
+//				alert('ApplicationAction = ' + ApplicationAction)
+				var TempPath = LocalDirPath + '\\append.bat'
+				BatchObject = fso.OpenTextFile(TempPath, 2, 1, 0)
+				if (ApplicationAction == 0)
+				{
+					runProgram(InputHodFile)
+				}
+				else if (ApplicationAction == 1)
+				{
+					runProgram_recursive(InputHodPath)
+				}
+				BatchObject.Close()
+				WshShell.Run(TempPath, 2, 1)
+			}
+			function runProgram_recursive(path)
+			{
+				if (fso.FolderExists(path) == 1)
+				{
+					var TempFolder = fso.GetFolder(path)
+					var TempFiles = new Enumerator(TempFolder.files)
+					var TempFilesTable = []
+					var TempBool = 0
+					for (; !TempFiles.atEnd(); TempFiles.moveNext())
+					{
+						var TempName = fso.GetFileName(TempFiles.item())
+						if (TempName.slice(-4) == '.png')
+						{
+							TempFilesTable.push(TempName)
+						}
+					}
+					TempFilesTable.sort()
+					var OldName = ''
+					for (var i = 0; i < TempFilesTable.length; i ++)
+					{
+						var TempName = TempFilesTable[i]
+						var NewName = TempName.substring(0, TempName.length - 4 - ImageFrames.length - 1)
+						if (OldName != NewName)
+						{
+//							alert(NewName)
+							runProgram(TempName)
+							OldName = NewName
+						}
+					}
+				}
+			}
+			function runProgram(file)
+			{
+				var BackgroundColor = ''
+				var OutputType = ''
+				var Geometry = ''
+				var CropArea = ''
+				if (ApplicationMode == 0)
+				{
+					BackgroundColor = ''
+					OutputType = 'PNG24:'
+				}
+				else if (ApplicationMode == 1)
+				{
+					BackgroundColor = ' -background blue'
+					OutputType = 'PNG24:'
+				}
+				else if (ApplicationMode == 2)
+				{
+					BackgroundColor = ' -background black'
+					OutputType = 'PNG24:'
+				}
+				else if (ApplicationMode == 3)
+				{
+					BackgroundColor = ' -background transparent'
+					OutputType = 'PNG32:'
+				}
+				if (SpriteSize == 0)
+				{
+					Geometry = ' -geometry 64x64!'
+					CropArea = ' -crop 64x64+0+64!'
+				}
+				else if (SpriteSize == 1)
+				{
+					Geometry = ' -geometry 64x96!'
+					CropArea = ' -crop 64x96+0+32!'
+				}
+				var TempRoot = trimRoot(file)
+				var FramesNumber = eval(ImageFrames)
+				var TempString = 'montage'
+				BatchObject.WriteLine('set ImgPath=' + InputHodPath)
+				for (var i = 0; i < FramesNumber; i ++)
+				{
+					var num = i.toString()
+					while (num.length < ImageFrames.length)
+					{
+						num = '0' + num
+					}
+					var TempLine = 'convert "' + '%ImgPath%\\' + TempRoot + num + '.png"' + BackgroundColor + CropArea + ' "' + OutputType + '%ImgPath%\\' + TempRoot + num + '_crop.png"'
+					BatchObject.WriteLine(TempLine)
+					TempString += ' "' + '%ImgPath%\\' + TempRoot + num + '_crop.png"'
+				}
+				TempString += BackgroundColor + Geometry + ' "' + OutputType + '%ImgPath%\\' + TempRoot + '.png"'
+				BatchObject.WriteLine(TempString)
+				for (var i = 0; i < FramesNumber; i ++)
+				{
+					var num = i.toString()
+					while (num.length < ImageFrames.length)
+					{
+						num = '0' + num
+					}
+					var TempLine = 'del "' + '%ImgPath%\\' + TempRoot + num + '_crop.png"'
+					BatchObject.WriteLine(TempLine)
+				}
+			}
+/*
+			function runProgram_b(file)
+			{
+				var TempRoot = trimRoot(file)
+				var FramesNumber = eval(ImageFrames)
+				var TempString = 'montage '
+				BatchObject.WriteLine('set ImgPath=' + InputHodPath)
+				for (var i = 1; i <= FramesNumber; i ++)
+				{
+					var num = i.toString()
+					while (num.length < ImageFrames.length)
+					{
+						num = '0' + num
+					}
+					var TempLine = 'convert "' + '%ImgPath%\\' + TempRoot + num + '.png" -background blue -crop 64x64+0+64! "' + '%ImgPath%\\' + TempRoot + num + '_crop.png"'
+					BatchObject.WriteLine(TempLine)
+					TempString += '"' + '%ImgPath%\\' + TempRoot + num + '_crop.png" '
+				}
+				TempString += ' -background blue -geometry 64x64! "' + '%ImgPath%\\' + TempRoot + '.png"'
+				BatchObject.WriteLine(TempString)
+				for (var i = 1; i <= FramesNumber; i ++)
+				{
+					var num = i.toString()
+					while (num.length < ImageFrames.length)
+					{
+						num = '0' + num
+					}
+					var TempLine = 'del "' + '%ImgPath%\\' + TempRoot + num + '_crop.png"'
+					BatchObject.WriteLine(TempLine)
+				}
+			}
+			function runProgram_c(file)
+			{
+				var TempRoot = trimRoot(file)
+				var FramesNumber = eval(ImageFrames)
+				var TempString = 'montage '
+				BatchObject.WriteLine('set ImgPath=' + InputHodPath)
+				for (var i = 1; i <= FramesNumber; i ++)
+				{
+					var num = i.toString()
+					while (num.length < ImageFrames.length)
+					{
+						num = '0' + num
+					}
+					var TempLine = 'convert "' + '%ImgPath%\\' + TempRoot + num + '.png" -background black -crop 64x64+0+64! "' + '%ImgPath%\\' + TempRoot + num + '_crop.png"'
+					BatchObject.WriteLine(TempLine)
+					TempString += '"' + '%ImgPath%\\' + TempRoot + num + '_crop.png" '
+				}
+				TempString += ' -background black -geometry 64x64! "' + '%ImgPath%\\' + TempRoot + '.png"'
+				BatchObject.WriteLine(TempString)
+				for (var i = 1; i <= FramesNumber; i ++)
+				{
+					var num = i.toString()
+					while (num.length < ImageFrames.length)
+					{
+						num = '0' + num
+					}
+					var TempLine = 'del "' + '%ImgPath%\\' + TempRoot + num + '_crop.png"'
+					BatchObject.WriteLine(TempLine)
+				}
+			}
+*/
+			function saveLastSettings()
+			{
+				updAll()
+				var TempPath = LocalDirPath + '\\settings.ini'
+				var TempObject = fso.OpenTextFile(TempPath, 2, 1, 0)
+				TempObject.WriteLine('[GH Appender]')
+				TempObject.WriteLine('ImageFrames=' + ImageFrames + ';')
+				TempObject.WriteLine('SpriteSize=' + SpriteSize + ';')
+				TempObject.WriteLine('ApplicationAction=' + ApplicationAction + ';')
+				TempObject.WriteLine('ApplicationMode=' + ApplicationMode + ';')
+				TempObject.WriteLine('InputHodPath=' + InputHodPath + ';')
+				TempObject.WriteLine('InputHodFile=' + InputHodFile + ';')
+				TempObject.Close()
+			}
+
+
+			Math.log10 = function(number)
+			{
+				return Math.log(number)/Math.LN10
+			}
+		-->
+		</SCRIPT>
+		<STYLE TYPE="text/css">
+		<!--
+			body		{background:buttonface;color:buttontext;border:0px;padding:0px;margin:0px;font:10pt Arial;overflow:hidden;}
+			fieldset	{padding:4px;}
+			select		{}
+			.fake		{background:buttonface;color:buttontext;border:2px outset;}
+		-->
+		</STYLE>
+	</HEAD>
+	<BODY onload="init()" onunload="saveLastSettings()" style="margin:0em;">
+		<div style="float:left;width:100%;">
+			<fieldset>
+				<legend>Input Folder</legend>
+				<form action="javascript:updAll()" style="display:inline;">
+					<table style="width:100%;" cellpadding="0" cellspacing="2">
+						<tr>
+							<td style="width:*;">
+								<input id="InputHodPath" type="text" style="width:100%" onfocus="this.select()" />
+							</td>
+							<td style="width:50px;">
+								<input type="submit" style="width:100%" value="Go" />
+							</td>
+						</tr>
+					</table>
+				</form>
+				<select name="InpHodSel" id="InputHodList" size="10" style="width:100%;background:c0c0ff;">
+				</select>
+			</fieldset>
+		</div>
+		<fieldset style="clear:left;">
+			<legend>Animation Frames</legend>
+			<div>
+				<input id="ImgRootSel" type="text" value="root" disabled="disabled" style="background:buttonface;display:none;" />
+				<input id="ImgFramesSel" type="text" value="0" size="4" />
+				<input id="" type="text" size="4" value=".png" disabled="disabled" style="background:buttonface;display:none;" />
+				<input type="button" value="Set" style="width:40;display:none;" onclick="resetRoot()" />
+				<span id="string0">The number of frames in the sequence.</span>
+			</div>
+		</fieldset>
+		<fieldset style="clear:left;">
+			<legend>Modes</legend>
+			<form name="AppMode" style="display:inline;">
+				<div>
+					<input type="radio" name="AppModeSel" value="a" checked="checked" />
+					<span id="string0">Crop and append 24-bit source images onto whatever background already exists. (Most likely this one.)</span>
+				</div>
+				<div>
+					<input type="radio" name="AppModeSel" value="b" />
+					<span id="string1">Crop and append 32-bit source images onto a blue background. (Disable anti-aliasing in POV-Ray.)</span>
+				</div>
+				<div>
+					<input type="radio" name="AppModeSel" value="c" />
+					<span id="string1">Crop and append 32-bit source images onto a black background. (Disable anti-aliasing in POV-Ray.)</span>
+				</div>
+				<div>
+					<input type="radio" name="AppModeSel" value="d" />
+					<span id="string1">Crop and append 32-bit source images onto a transparent background. (Does not work in main GH fork.)</span>
+				</div>
+			</form>
+		</fieldset>
+		<fieldset style="display:none;">
+			<legend>Actions</legend>
+			<form name="AppAction" style="display:inline;">
+				<div>
+					<input type="radio" name="AppActionSel" value="a" checked="checked" />
+					<span id="string0">Work on the selected file only.</span>
+				</div>
+				<div>
+					<input type="radio" name="AppActionSel" value="b" />
+					<span id="string1">Work on all files in the directory. (Danger!)</span>
+				</div>
+			</form>
+		</fieldset>
+		<fieldset style="clear:left;">
+			<legend>Sprite Cell Size (input needs to be 64x128px)</legend>
+			<form name="SprSize" style="display:inline;">
+				<div>
+					<input type="radio" name="SprSizeSel" value="a" checked="checked" />
+					<span id="string0">64x64px (Mecha)</span>
+				</div>
+				<div style="display:inline;">
+					<input type="radio" name="SprSizeSel" value="b" />
+					<span id="string1">64x96px (Terrain)</span>
+				</div>
+			</form>
+		</fieldset>
+		<input style="width:100%;margin:4;" type="button" value="Run" onclick="performAction()" />
+	</BODY>
+</HTML>
