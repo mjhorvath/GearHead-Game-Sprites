@@ -27,9 +27,10 @@ Mecha models by:
 * Michael Horvath
 * Kete
 
-Additional non-LGPL mecha models by:
+Additional mecha models by:
 
-* Mladen Pejic		http://www3.sympatico.ca/mladenpejic/
+* Mladen Pejic		    http://www3.sympatico.ca/mladenpejic/
 * Randy & Ron Perovich	http://www.legomechwarrior.net/
-* Timothy Gould		http://www.ldraw.org/Article410.html
-* FlyerX at TurboSquid
+* Timothy Gould		    http://www.ldraw.org/Article410.html
+
+All mecha models are copyright © their original authors, and are used with permission.

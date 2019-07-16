@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>GearHead RPG Mockup (NoAA)</title>
+	<meta charset="UTF-8">
+	<script src="mockup.js"></script>
+	<script>
+var path = 'images_general_noaa_alpha/'
+var extn = '.png'
+
+var pad_lft = 0
+var pad_top = 32
+
+var sizeX = 12
+var sizeY = 26
+
+var terrain =
+[
+//0
+	[f_heavy,f_heavy,f_heavy,f_heavy,grass,grass,f_light,f_heavy,f_light,hill_a01,hill_b01,hill_c01],
+	[f_heavy,f_heavy,f_heavy,f_heavy,grass,grass,f_light,f_heavy,f_light,hill_a02,hill_b02,hill_c02],
+	[f_heavy,f_heavy,f_light,f_light,grass,grass,f_light,f_heavy,f_light,hill_a03,hill_b03,hill_c03],
+	[f_heavy,f_heavy,f_light,f_light,grass,grass,f_light,f_heavy,f_light,hill_a04,hill_b04,hill_c04],
+	[grass,grass,grass,grass,grass,grass,f_light,f_heavy,f_light,hill_a05,hill_b05,hill_c05],
+	[grass,grass,grass,grass,grass,grass,f_light,f_heavy,f_light,hill_a06,hill_b06,hill_c06],
+	[grass,grass,grass,grass,grass,grass,f_light,f_heavy,f_light,hill_a07,hill_b07,hill_c07],
+	[f_light,f_light,f_light,f_light,f_light,f_light,f_light,f_heavy,f_light,hill_a08,hill_b08,hill_c08],
+//8
+	[f_heavy,f_heavy,f_heavy,f_heavy,f_heavy,f_heavy,f_heavy,f_heavy,f_light,hill_a09,hill_b09,hill_c09],
+	[f_heavy,f_heavy,f_heavy,f_heavy,f_heavy,f_heavy,f_heavy,f_heavy,f_light,hill_a10,hill_b10,hill_c10],
+	[f_light,f_light,f_light,f_light,f_light,f_light,f_light,f_light,f_light,hill_a11,hill_b11,hill_c11],
+	[grass,grass,grass,grass,grass,grass,grass,marsh,marsh,hill_a12,hill_b12,hill_c12],
+	[grass,wastes,wastes,wastes,wastes,wastes,grass,marsh,marsh,hill_a13,hill_b13,hill_c13],
+	[wastes,wastes,wastes,wastes,wastes,wastes,grass,marsh,marsh,hill_a14,hill_b14,hill_c14],
+	[wastes,desert,desert,desert,desert,wastes,wastes,grass,grass,hill_a15,hill_b15,hill_c15],
+	[desert,desert,desert,desert,desert,wastes,wastes,grass,grass,hill_a16,hill_b16,hill_c16],
+//16
+	[desert,desert,desert,desert,desert,wastes,wastes,grass,grass,grass,grass,grass],
+	[wastes,desert,desert,desert,desert,wastes,wastes,grass,grass,grass,grass,grass],
+	[wastes,wastes,wastes,wastes,wastes,wastes,grass,marsh,marsh,marsh,marsh,grass],
+	[grass,wastes,wastes,wastes,wastes,wastes,grass,marsh,marsh,marsh,marsh,grass],
+	[grass,grass,grass,grass,grass,grass,grass,marsh,marsh,marsh,marsh,grass],
+	[water_1,water_1,water_1,water_1,water_1,water_1,water_1,marsh,marsh,marsh,grass,grass],
+	[water_2,water_2,water_2,water_2,water_2,water_2,water_2,marsh,marsh,marsh,grass,grass],
+	[water_3,water_3,water_3,water_3,water_3,water_3,water_3,marsh,marsh,marsh,grass,grass],
+//24
+	[water_2,water_2,water_2,water_2,water_2,water_2,water_2,marsh,marsh,marsh,grass,grass],
+	[water_1,water_1,water_1,water_1,water_1,water_1,water_1,marsh,marsh,marsh,grass,grass]
+]
+
+var objects =
+[
+	//name, frames, y, x
+	['Shadow_Small',1,0,4],
+	['tur_gun',8,0,4],
+	['Shadow_Small',1,0,5],
+	['tur_missile',8,0,5],
+	['Shadow_Big',1,2,0],
+	['btr_maanji',8,2,0],
+	['Shadow_Big',1,2,1],
+	['btr_jos',8,2,1],
+	['Shadow_Big',1,2,2],
+	['btr_condor',8,2,2],
+	['Shadow_Big',1,2,3],
+	['btr_vadel',8,2,3],
+	['Shadow_Small',1,1,4],
+	['ghu_renegade',8,1,4],
+	['Shadow_Small',1,1,5],
+	['gca_rover',8,1,5],
+	['Shadow_Small',1,2,4],
+	['ghu_doombuggy',8,2,4],
+	['Shadow_Small',1,2,5],
+	['aer_shuttle',8,2,5],
+	['Shadow_Big',1,2,6],
+	['btr_ovaknight',8,2,6],
+	['Shadow_Big',1,2,7],
+	['btr_radcliff',8,2,7],
+	['Shadow_Big',1,2,8],
+	['btr_trailblazer',8,2,8],
+	['Projectile_Missile',8,4,1],
+	['Projectile_Energy',8,4,2],
+	['Projectile_Laser',8,4,3],
+	['Projectile_Flamethrower',8,4,4],
+	['Projectile_Bullet',8,4,5],
+	['Effect_Smoke',8,6,0],
+	['Explosion_Energy',8,6,1],
+	['Explosion_Volatile',8,6,2],
+	['Explosion_Smokey',8,6,3],
+	['Explosion_Firy',8,6,4],
+	['Effect_Flame',8,6,5],
+	['Shadow_Small',1,12,0],
+	['Cha_Android',8,12,0],
+	['Prop_Generator',1,14,0],
+	['Prop_Ziggurat',1,14,1],
+	['Prop_Temple',1,14,2],
+	['Prop_Geodome',1,14,3],
+	['Prop_Fortress',1,14,4],
+	['Prop_Ore',1,14,5],
+	['Prop_Boulders',1,14,6],
+	['Prop_BigTree',1,14,7],
+	['City01',1,19,8],
+	['City02',1,19,9],
+	['City03',1,19,10],
+	['City04',1,19,11],
+	['City05',1,18,8],
+	['City06',1,18,9],
+	['City07',1,18,10],
+	['City08',1,18,11],
+	['City09',1,17,8],
+	['City10',1,17,9],
+	['City12',1,17,10],
+	['City13',1,17,11],
+	['City14',1,16,8],
+	['City15',1,16,9],
+	['City16',1,16,10],
+	['Roads_Small01',1,17,0],
+	['Roads_Small02',1,17,1],
+	['Roads_Small03',1,17,2],
+	['Roads_Small04',1,17,3],
+	['Roads_Small05',1,17,4],
+	['Roads_Small06',1,17,5],
+	['Roads_Small07',1,17,6],
+	['Roads_Small08',1,17,7],
+	['Roads_Small09',1,18,0],
+	['Roads_Small10',1,18,1],
+	['Roads_Small11',1,18,2],
+	['Roads_Small12',1,18,3],
+	['Roads_Small13',1,18,4],
+	['Roads_Small14',1,18,5],
+	['Roads_Small15',1,18,6],
+	['Roads_Small16',1,18,7],
+	['Roads_Large01',1,19,0],
+	['Roads_Large02',1,19,1],
+	['Roads_Large03',1,19,2],
+	['Roads_Large04',1,19,3],
+	['Roads_Large05',1,19,4],
+	['Roads_Large06',1,19,5],
+	['Roads_Large07',1,19,6],
+	['Roads_Large08',1,19,7],
+	['Roads_Large09',1,20,0],
+	['Roads_Large10',1,20,1],
+	['Roads_Large11',1,20,2],
+	['Roads_Large12',1,20,3],
+	['Roads_Large13',1,20,4],
+	['Roads_Large14',1,20,5],
+	['Roads_Large15',1,20,6],
+	['Roads_Large16',1,20,7],
+	['Walls_Fortress01',1,22,0],
+	['Walls_Fortress02',1,22,1],
+	['Walls_Fortress03',1,22,2],
+	['Walls_Fortress04',1,22,3],
+	['Walls_Fortress05',1,22,4],
+	['Walls_Fortress06',1,22,5],
+	['Walls_Fortress07',1,22,6],
+	['Walls_Fortress08',1,22,7],
+	['Walls_Fortress09',1,23,0],
+	['Walls_Fortress10',1,23,1],
+	['Walls_Fortress11',1,23,2],
+	['Walls_Fortress12',1,23,3],
+	['Walls_Fortress13',1,23,4],
+	['Walls_Fortress14',1,23,5],
+	['Walls_Fortress15',1,23,6],
+	['Walls_Fortress16',1,23,7],
+	['Walls_Arena01',1,24,0],
+	['Walls_Arena02',1,24,1],
+	['Walls_Arena03',1,24,2],
+	['Walls_Arena04',1,24,3],
+	['Walls_Arena05',1,24,4],
+	['Walls_Arena06',1,24,5],
+	['Walls_Arena07',1,24,6],
+	['Walls_Arena08',1,24,7],
+	['Walls_Arena09',1,25,0],
+	['Walls_Arena10',1,25,1],
+	['Walls_Arena11',1,25,2],
+	['Walls_Arena12',1,25,3],
+	['Walls_Arena13',1,25,4],
+	['Walls_Arena14',1,25,5],
+	['Walls_Arena15',1,25,6],
+	['Walls_Arena16',1,25,7]
+]
+	</script>
+	</head>
+	<body onload="init()">
+		<div id="mockup"></div>
+	</body>
+</html>
