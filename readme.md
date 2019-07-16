@@ -19,7 +19,7 @@ The images in the majority of the sub-directories of the "demos" directory are u
 
 This library has a lot of depencies that you will need to track down and install yourself. I could not include them all due to licensing restrictions. Once you have located and downloaded the dependencies, you will need to add them to the Library_Path section of "GearHead.ini".
 
-Clues to where you might track down these dependencies can be found [here](credits.md).
+Clues to where you might track down these dependencies can be found on the [Credits page](credits.md).
 
 
 ## Models
@@ -30,7 +30,7 @@ The source 3D models for the sprites are included. The majority of the models ar
 * http://www.legomechwarrior.net/ (Randy & Ron Perovich)
 * http://www.ldraw.org/Article410.html (Timothy Gould)
 
-Files in LDR or MPD format require the LDraw library of tools in order to view or edit them.
+Models in LDR or MPD format require the LDraw library of tools in order to view and edit them.
 
 
 ## Sprites
