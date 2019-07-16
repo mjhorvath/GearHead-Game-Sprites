@@ -26,9 +26,9 @@ Clues to where you can track down these dependencies can be found [here](credits
 
 The source 3D models for the sprites are included. The majority of the models are by Mladen Pejic, Randy & Ron Perovich and Timothy Gould, and are used with permission. Unfortunately, I didn't keep careful track of which models were made by whom. However, their websites can be found at the following URLs:
 
-http://www3.sympatico.ca/mladenpejic/	(Mladen Pejic)
-http://www.legomechwarrior.net/		    (Randy & Ron Perovich)
-http://www.ldraw.org/Article410.html	(Timothy Gould)
+* http://www3.sympatico.ca/mladenpejic/ (Mladen Pejic)
+* http://www.legomechwarrior.net/ (Randy & Ron Perovich)
+* http://www.ldraw.org/Article410.html (Timothy Gould)
 
 Files in LDR or MPD format require the LDraw library of tools in order to view or edit them.
 
@@ -49,9 +49,8 @@ Of course, in order to make the sprites render properly in the HTML mockups, an 
 
 For a better and more complete explanation of the terminology and techniques used, read these two tutorials on my website:
 
-http://isometricland.net/gearhead/gh-sprite-assembly.php
-
-http://isometricland.net/gearhead/gh-sprite-dithering.php
+* http://isometricland.net/gearhead/gh-sprite-assembly.php
+* http://isometricland.net/gearhead/gh-sprite-dithering.php
 
 These tools and tutorials require that ImageMagick also be installed on your system.
 
