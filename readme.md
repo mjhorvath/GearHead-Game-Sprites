@@ -1,6 +1,6 @@
 # GEARHEAD ARENA
 
-The sprites in this library are meant to work with Michael Horvath's fork of GearHead: Arena.
+The sprites in this library are meant to work with Michael Horvath's fork of _GearHead: Arena_ v1.100.
 
 https://github.com/mjhorvath/gearhead-1
 
