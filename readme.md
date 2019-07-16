@@ -40,12 +40,14 @@ Sprites are sorted into several categories (and folders) based on a combination 
 1. small, medium and large sizes
 1. alpha, dithered and NoAA transparency
 
+An explanation is as follows:
+
 * The "small", "medium" and "large" categories should be self-explanatory. Sprites are either bigger or smaller.
 * "Alpha" means the image uses anti-aliasing and is composed on top of an 8 bit alpha channel. This results in a total of 32 bits and smooth blending around the edges. Unfortunately, GearHead does not support 32 bit images, requiring the implementation of workarounds in the form of the two remaining groups.
 * "Dithered" means the image's transparency and anti-aliasing data has been baked into the 24 bit image, producing a "dithered" or speckled effect around the edges. Looks noticeably grainy.
 * "NoAA" means no anti-aliasing has been done at all. The image is 24 bits. Lacks detail around the mecha edges and borders.
 
-Of course, in order to make the sprites render properly in the HTML mockups, an alpha channel was added to the images, regardless of the technique used - meaning all images were turned into 32 bit images for the demos and mockups. You can safely remove the alpha channels for images in the "dithered" and NoAA" categories when importing them into the game. The sprites in the "blue" folders have already been composited onto a blue background and are ready to be used in the game.
+Of course, in order to make the sprites render properly in the HTML mockups, an alpha channel was added to the images, regardless of the technique used - meaning all images were turned into 32 bit images for the demos and mockups. You can safely remove the alpha channels for images in the "dithered" and "NoAA" categories when importing them into the game. The sprites in the "blue" folders have already been composited onto a blue background and are ready to be used in the game.
 
 For a better and more complete explanation of the terminology and techniques used, read these two tutorials on my website:
 
